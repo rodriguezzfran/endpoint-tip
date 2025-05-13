@@ -1,7 +1,5 @@
-#ifndef DECLARE_AT_HPP
-#define DECLARE_AT_HPP
-
-
+#ifndef PEPE_AND_JUAN_HPP
+#define PEPE_AND_JUAN_HPP
 
 struct Pepe
 {
