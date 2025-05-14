@@ -17,7 +17,7 @@ int genericPlus(const void* array, size_t elementSize, size_t fieldOffset, size_
 
         int acum = 0;
         for (size_t i = 0; i < amountOfElements; i++) {
-            acum += *(int*)((char*)array + fieldOffset);
+            acum += *(int*)((char*)array + fieldOffset); // cast to char* because we need to move the pointer by bytes
             array = (char*)array + elementSize;
         }
 

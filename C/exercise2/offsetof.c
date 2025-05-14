@@ -1,12 +1,12 @@
 #include <stdio.h>
 
-typedef struct structure{
+struct structure{
     char charStructure;
     int intStructure;
     float floatStructure;
     double doubleStructure;
     int arrayStructure[10];
-} structure;
+};
 
 /*
  the first argument is the struct type
