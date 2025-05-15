@@ -1,12 +1,11 @@
 #include "genericList.h"
 
-declare_list_type(int, intList)
-declare_list_type(float, floatList)
+declare_list_type(int, intList) declare_list_type(float, floatList)
 
-define_list_print("%d ", intList)
-define_list_print("%f ", floatList)
+define_list_print("%d ", intList) define_list_print("%f ", floatList)
 
-int main(){
+int main()
+{
 
     intList list1;
     floatList list2;
@@ -30,7 +29,6 @@ int main(){
 
     intList_print(&list1);
     floatList_print(&list2);
-    
-    return 0;
 
+    return 0;
 }

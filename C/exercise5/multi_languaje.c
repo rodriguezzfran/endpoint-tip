@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-enum Languages {
+enum Languages
+{
     Spanish,
     English,
     French,
@@ -8,7 +9,8 @@ enum Languages {
     numberOfLanguages
 };
 
-enum Messages {
+enum Messages
+{
     HelloWorld,
     OutOfMemory,
     FileNotFound,
@@ -24,18 +26,24 @@ const char* messages[numberOfLanguages][numberOfMessages] = {
     {"Привет мир", "Недостаточно памяти", "Файл не найден", "Выход за пределы"},
 };
 
-const char* getMessageWithSwitch(enum Languages lang, enum Messages msg) {
-    
-    if (lang < 0 || lang >= numberOfLanguages) {
+const char* getMessageWithSwitch(enum Languages lang, enum Messages msg)
+{
+
+    if (lang < 0 || lang >= numberOfLanguages)
+    {
         return "Invalid Language";
-    } else if (msg < 0 || msg >= numberOfMessages) {
+    }
+    else if (msg < 0 || msg >= numberOfMessages)
+    {
         return "Invalid Message";
     }
 
-    switch (lang) {
+    switch (lang)
+    {
 
         case Spanish:
-            switch (msg) {
+            switch (msg)
+            {
                 case HelloWorld:
                     return "Hola Mundo";
                 case OutOfMemory:
@@ -50,7 +58,8 @@ const char* getMessageWithSwitch(enum Languages lang, enum Messages msg) {
             break;
 
         case English:
-            switch (msg) {
+            switch (msg)
+            {
                 case HelloWorld:
                     return "Hello World";
                 case OutOfMemory:
@@ -65,7 +74,8 @@ const char* getMessageWithSwitch(enum Languages lang, enum Messages msg) {
             break;
 
         case French:
-            switch (msg) {
+            switch (msg)
+            {
                 case HelloWorld:
                     return "Bonjour le monde";
                 case OutOfMemory:
@@ -80,7 +90,8 @@ const char* getMessageWithSwitch(enum Languages lang, enum Messages msg) {
             break;
 
         case Russian:
-            switch (msg) {
+            switch (msg)
+            {
                 case HelloWorld:
                     return "Привет мир";
                 case OutOfMemory:
@@ -99,24 +110,30 @@ const char* getMessageWithSwitch(enum Languages lang, enum Messages msg) {
     }
 
     return "end"; // This should never be reached
-
 }
 
-// We can simply use the enum's field in the switch statement but we will use the internal representation
-const char* getMessage(enum Languages lang, enum Messages msg) {
-    
-    if (lang < 0 || lang >= numberOfLanguages) {
+// We can simply use the enum's field in the switch statement but we will use the internal
+// representation
+const char* getMessage(enum Languages lang, enum Messages msg)
+{
+
+    if (lang < 0 || lang >= numberOfLanguages)
+    {
         return "Invalid Language";
-    }else if (msg < 0 || msg >= numberOfMessages) {
+    }
+    else if (msg < 0 || msg >= numberOfMessages)
+    {
         return "Invalid Message";
-    }else{
+    }
+    else
+    {
         return messages[lang][msg];
     }
-
 }
 
-int main() {
-    
+int main()
+{
+
     enum Languages lang = Spanish;
     enum Messages msg = HelloWorld;
     printf("%s\n", getMessage(lang, msg));
@@ -129,7 +146,7 @@ int main() {
     msg = FileNotFound;
     printf("%s\n", getMessage(lang, msg));
 
-    lang = 4; // Invalid Language    
+    lang = 4; // Invalid Language
     msg = FileNotFound;
     printf("%s\n", getMessage(lang, msg));
 
@@ -151,7 +168,7 @@ int main() {
     msg = FileNotFound;
     printf("%s\n", getMessageWithSwitch(lang, msg));
 
-    lang = 4; // Invalid Language    
+    lang = 4; // Invalid Language
     msg = FileNotFound;
     printf("%s\n", getMessageWithSwitch(lang, msg));
 

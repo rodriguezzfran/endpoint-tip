@@ -1,61 +1,19 @@
-#include <stdio.h>
+#include "state_machine.h"
 
-enum Stimulus
+void stimulateOff(struct FSM* fsm, enum Stimulus stimulus)
 {
-    TurnOn,
-    TurnOff,
-    SpeedUp,
-    SpeedDown,
-    CantStimulous
-};
 
-enum State
-{
-    Off,
-    Stopped,
-    Walking,
-    Running,
-    Error,
-    CantStates
-};
-
-struct FSM
-{
-    enum State currentState;
-};
-
-int isValidFSM(struct FSM* fsm){
-    if(fsm == NULL){
-        return 0;
-    }
-    return 1;
-}
-
-int isValidStimulus(enum Stimulus stimulus){
-    if(stimulus >= CantStimulous){
-        return 0;
-    }
-    return 1;
-}
-
-int isValidState(enum State state){
-    if(state >= CantStates){
-        return 0;
-    }
-    return 1;
-}
-
-void stimulateOff(struct FSM* fsm, enum Stimulus stimulus){
-    
-    if (stimulus == TurnOn){
+    if (stimulus == TurnOn)
+    {
         fsm->currentState = Stopped;
         printf("Off -- TurnOn --> Stopped\n");
     }
-        
 }
 
-void stimulateStopped(struct FSM* fsm, enum Stimulus stimulus){
-    switch (stimulus) {
+void stimulateStopped(struct FSM* fsm, enum Stimulus stimulus)
+{
+    switch (stimulus)
+    {
         case TurnOff:
             fsm->currentState = Off;
             printf("Stopped -- TurnOff --> Off\n");
@@ -73,8 +31,10 @@ void stimulateStopped(struct FSM* fsm, enum Stimulus stimulus){
     }
 }
 
-void stimulateWalking(struct FSM* fsm, enum Stimulus stimulus){
-    switch (stimulus) {
+void stimulateWalking(struct FSM* fsm, enum Stimulus stimulus)
+{
+    switch (stimulus)
+    {
         case TurnOff:
             fsm->currentState = Off;
             printf("Walking -- TurnOff --> Off\n");
@@ -92,8 +52,10 @@ void stimulateWalking(struct FSM* fsm, enum Stimulus stimulus){
     }
 }
 
-void stimulateRunning(struct FSM* fsm, enum Stimulus stimulus){
-    switch (stimulus) {
+void stimulateRunning(struct FSM* fsm, enum Stimulus stimulus)
+{
+    switch (stimulus)
+    {
         case TurnOff:
             fsm->currentState = Off;
             printf("Running -- TurnOff --> Off\n");
@@ -111,8 +73,10 @@ void stimulateRunning(struct FSM* fsm, enum Stimulus stimulus){
     }
 }
 
-void stimulateError(struct FSM* fsm, enum Stimulus stimulus){
-    switch (stimulus) {
+void stimulateError(struct FSM* fsm, enum Stimulus stimulus)
+{
+    switch (stimulus)
+    {
         case TurnOff:
             fsm->currentState = Off;
             printf("Error -- TurnOff --> Off\n");
@@ -122,19 +86,28 @@ void stimulateError(struct FSM* fsm, enum Stimulus stimulus){
     }
 }
 
-void stimulate (struct FSM* fsm, enum Stimulus stimulus){
+void stimulate(struct FSM* fsm, enum Stimulus stimulus)
+{
 
-    if(!isValidFSM(fsm)){
+    if (!isValidFSM(fsm))
+    {
         printf("FSM not valid\n");
         return;
-    }else if(!isValidStimulus(stimulus)){
+    }
+    else if (!isValidStimulus(stimulus))
+    {
         printf("Stimulus not valid\n");
         return;
-    }else if(!isValidState(fsm->currentState)){
+    }
+    else if (!isValidState(fsm->currentState))
+    {
         printf("State not valid\n");
         return;
-    }else{
-        switch(fsm->currentState){
+    }
+    else
+    {
+        switch (fsm->currentState)
+        {
             case Off:
                 stimulateOff(fsm, stimulus);
                 break;
@@ -157,7 +130,8 @@ void stimulate (struct FSM* fsm, enum Stimulus stimulus){
     }
 }
 
-int main() {
+int main()// cast to const char* because we need to move the pointer by bytes
+{
 
     struct FSM fsm;
     fsm.currentState = Off;
@@ -170,4 +144,5 @@ int main() {
     stimulate(&fsm, SpeedUp);
     stimulate(&fsm, TurnOff);
 
+    
 }
