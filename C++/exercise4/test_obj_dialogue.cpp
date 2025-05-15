@@ -39,6 +39,4 @@ TEST(DialogueTest, MockDialogueTwo) {
     p1.sayHowAreYou();
     mockDialogueTwo.sayFineAndYou();
 
-    
-    
 }
