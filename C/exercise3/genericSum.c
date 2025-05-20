@@ -18,7 +18,6 @@ int genericPlus(const void* array, size_t elementSize, size_t fieldOffset, size_
 
     int acum = 0;
 
-    printf("(int *)array + fieldOffset = %d\n", *(int*)((char*)array + fieldOffset));
     for (size_t i = 0; i < amountOfElements; i++)
     {   
         

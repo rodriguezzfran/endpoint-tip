@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -pedantic -g
+CFLAGS = -Wall -Wextra -Werror -std=c99 -pedantic -g
 
 SRC_ONE = state_machine.c
 SRC_TWO = state_machine_w_func_pointer.c

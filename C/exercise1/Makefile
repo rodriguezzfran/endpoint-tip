@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -pedantic -g # -g for debugging
+CFLAGS = -Wall -Wextra -Werror -std=c99 -pedantic -g # -g for debugging
 
 SRC = indirections.c
 TARGET = indirections
