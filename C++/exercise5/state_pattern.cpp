@@ -1,7 +1,7 @@
 #include "state_pattern.hpp"
 
 int main(){
-    std::shared_ptr<State> offState = std::make_shared<OffState>();
+    std::shared_ptr<State> offState = std::make_shared<OffState>(); // this is a pointer to a OffState object
     FSMcontext fsm(offState);
 
     fsm.turnOn(); // Off -- TurnOn --> Stopped

@@ -12,14 +12,17 @@ class WalkingState;
 class RunningState;
 class ErrorState;
 
+// Abstract State class
 class State {
     protected:
         FSMcontext* context;
     public:
         virtual ~State() = default;
         void setContext(FSMcontext* context) {
-            this->context = context;
+            this->context = context; // raw pointer to the context
         }
+
+        // Every state must implement these methods
         virtual void turnOn() = 0;
         virtual void turnOff() = 0;
         virtual void speedUp() = 0;
@@ -28,7 +31,7 @@ class State {
 
 class FSMcontext {
     private:
-        std::shared_ptr<State> currentState;
+        std::shared_ptr<State> currentState; // actual state of the FSM, dynamically allocated object that heredits from State
 
     public:
         FSMcontext(std::shared_ptr<State> initialState) {
