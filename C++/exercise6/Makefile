@@ -1,14 +1,13 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -pedantic -g
 
-SRC = state_pattern.cpp
-HDR = state_pattern.hpp
+SRC = friends_group.cpp
+HDR = friends_group.hpp
 
-TEST_SRC = test_state_pattern.cpp
-MOCK_HDR = mock_state_pattern.hpp
-TEST_BIN = state_pattern_test
+TEST_SRC = test_friends_group.cpp
+TEST_BIN = friends_group_test
 
-RUN_BIN = run_fsm
+RUN_BIN = friends_group
 
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 
@@ -19,7 +18,7 @@ all: run
 test: $(TEST_BIN)
 	./$(TEST_BIN)
 
-$(TEST_BIN): $(TEST_SRC) $(MOCK_HDR) $(HDR)
+$(TEST_BIN): $(TEST_SRC) $(HDR)
 	$(CXX) $(CXXFLAGS) $(TEST_SRC) -lgtest -lgmock -lgtest_main -pthread -o $(TEST_BIN)
 
 run: $(SRC) $(HDR)
