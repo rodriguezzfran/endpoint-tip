@@ -10,5 +10,5 @@ int main(){
     friends.addBirthday("21/06/2002", "Pablo");
     friends.addBirthday("07/09/2000", "Julio");
     friends.addBirthday("07/09/2000", "Gaston");
-    friends.show(); // should print the last date with the two names
+    friends.show2(); // should print the last date with the two names
 }

@@ -35,6 +35,23 @@ class FriendsGroup {
             }
         }
 
+        // Imprime las fechas que tienen MÁS de 2 personas, usando una lambda
+        void show2() const {
+            auto print_group = [](const std::string& date, const std::vector<std::string>& names) {
+                std::cout << "Date: " << date << "\nNames:\n";
+                for (const auto& name : names) {
+                    std::cout << "  - " << name << "\n";
+                }
+                std::cout << std::endl;
+            };
+
+            for (const auto& pair : birthdays) {
+                if (pair.second.size() > 1) {
+                    print_group(pair.first, pair.second);
+                }
+            }
+        }
+
 };
 
 #endif
