@@ -47,7 +47,7 @@ int main()
     printf("result value: %d\n", result);
 
     // this should print the value of destination
-    result = nIndirections((void*)destination, 0);
+    result = nIndirections((void*)(long long int)destination, 0);
     printf("result value: %d\n", result);
 
     // this should print 0
