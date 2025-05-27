@@ -26,16 +26,19 @@ const char* messages[numberOfLanguages][numberOfMessages] = {
     {"Привет мир", "Недостаточно памяти", "Файл не найден", "Выход за пределы"},
 };
 
+const char* invalidLanguage = "Invalid Language";
+const char* invalidMessage = "Invalid Message";
+
 const char* getMessageWithSwitch(enum Languages lang, enum Messages msg)
 {
 
     if (lang < 0 || lang >= numberOfLanguages)
     {
-        return "Invalid Language";
+        return invalidLanguage;
     }
     else if (msg < 0 || msg >= numberOfMessages)
     {
-        return "Invalid Message";
+        return invalidMessage;
     }
 
     switch (lang)
@@ -118,12 +121,12 @@ const char* getMessage(enum Languages lang, enum Messages msg)
 {
 
     if (lang < 0 || lang >= numberOfLanguages)
-    {
-        return "Invalid Language";
+    {   
+        return invalidLanguage;
     }
     else if (msg < 0 || msg >= numberOfMessages)
     {
-        return "Invalid Message";
+        return invalidMessage;
     }
     else
     {

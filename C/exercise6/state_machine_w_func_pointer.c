@@ -68,7 +68,7 @@ void TurnOffFromError(struct FSM* fsm)
 
 void NoAction(struct FSM* fsm)
 {
-    fsm->currentState = fsm->currentState;
+   (void)fsm; // No action, just a placeholder
 }
 
 void (*StateFunctions[CantStates][CantStimulous])(struct FSM*) = 

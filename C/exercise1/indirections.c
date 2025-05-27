@@ -16,7 +16,7 @@ int nIndirections(void* initial, unsigned int indirections)
 
     for (unsigned int i = 1; i <= indirections; i++)
     {
-        current = *(void**)current; // so current points to the value of the pointer current which also points to a pointer to pointer
+        current = *(const void * const *)current; // so current points to the value of the pointer current which also points to a pointer to pointer, and cannot modify intermediate values
     }
 
     return (int)(intptr_t)current; // cast current to int and return it
@@ -53,6 +53,5 @@ int main()
     // this should print 0
     result = nIndirections((void*)0, 0);
     printf("result value: %d\n", result);
-
 
 }
