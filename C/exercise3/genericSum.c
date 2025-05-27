@@ -46,7 +46,7 @@ int main()
 
     const size_t fieldOffset = offsetOf(structure, intStructure);
     const size_t elementSize = sizeof(structure);
-    size_t amountOfElements = sizeof(arrayStructure) / sizeof(arrayStructure[0]);
+    const size_t amountOfElements = sizeof(arrayStructure) / sizeof(arrayStructure[0]);
     int sum = genericPlus(arrayStructure, elementSize, fieldOffset, amountOfElements);
     printf("sum of intStructure: %d\n", sum);
 }
