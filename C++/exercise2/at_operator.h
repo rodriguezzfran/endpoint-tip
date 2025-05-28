@@ -1,5 +1,5 @@
-#ifndef DECLARE_AT_HPP
-#define DECLARE_AT_HPP
+#ifndef AT_OPERATOR_H
+#define AT_OPERATOR_H
 
 #include <cstdint>
 
@@ -15,4 +15,5 @@
 #define declare_at(type, name, address)                      \
     volatile type& name = *reinterpret_cast<volatile type*>( \
         reinterpret_cast<std::uintptr_t>(address))
-#endif
+
+#endif // AT_OPERATOR_H

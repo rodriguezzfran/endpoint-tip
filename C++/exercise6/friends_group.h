@@ -1,5 +1,5 @@
-#ifndef FRIENDS_GROUP_HPP
-#define FRIENDS_GROUP_HPP
+#ifndef FRIENDS_GROUP_H
+#define FRIENDS_GROUP_H
 
 #include <iostream>
 #include <map>
@@ -67,4 +67,4 @@ public:
     }
 };
 
-#endif
+#endif // FRIENDS_GROUP_H

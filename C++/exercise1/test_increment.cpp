@@ -1,4 +1,4 @@
-#include "increment.hpp"
+#include "increment.h"
 #include <gtest/gtest.h>
 
 TEST(IncrementTest, PositiveNumber)

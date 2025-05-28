@@ -2,10 +2,10 @@ CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++17 -pedantic -g
 
 SRC = state_pattern.cpp
-HDR = state_pattern.hpp
+HDR = state_pattern.h
 
 TEST_SRC = test_state_pattern.cpp
-MOCK_HDR = mock_state_pattern.hpp
+MOCK_HDR = mock_state_pattern.h
 TEST_BIN = state_pattern_test
 
 RUN_BIN = run_fsm

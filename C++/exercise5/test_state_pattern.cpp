@@ -1,4 +1,4 @@
-#include "mock_state_pattern.hpp"
+#include "mock_state_pattern.h"
 #include <gtest/gtest.h>
 
 using ::testing::Exactly;

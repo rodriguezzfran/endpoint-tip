@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++14 -pedantic -g
 
 
-HDR = pepe_and_juan.hpp
+HDR = pepe_and_juan.h
 TEST_SRC = test_pepe_and_juan.cpp
 TEST_BIN = test_pepe_and_juan
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all

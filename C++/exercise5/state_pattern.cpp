@@ -1,4 +1,4 @@
-#include "state_pattern.hpp"
+#include "state_pattern.h"
 
 int main()
 {

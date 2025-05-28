@@ -1,9 +1,9 @@
-// mock_dialogues.hpp
+// mock_dialogues.h
 
-#ifndef MOCK_DIALOGUES_HPP
-#define MOCK_DIALOGUES_HPP
+#ifndef MOCK_DIALOGUES_H
+#define MOCK_DIALOGUES_H
 
-#include "obj_dialogue.hpp"
+#include "obj_dialogue.h"
 #include <gmock/gmock.h>
 
 class MockDialogueTwo : public DialogueTwo
@@ -20,4 +20,4 @@ public:
     MOCK_METHOD(void, sayHowAreYou, (), (override));
 };
 
-#endif
+#endif // MOCK_DIALOGUES_H

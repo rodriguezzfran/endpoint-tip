@@ -1,4 +1,4 @@
-#include "pepe_and_juan.hpp"
+#include "pepe_and_juan.h"
 #include <gtest/gtest.h>
 
 // Test case for the declare_at macro

@@ -1,8 +1,8 @@
 // mock_state.hpp
-#ifndef MOCK_STATE_HPP
-#define MOCK_STATE_HPP
+#ifndef MOCK_STATE_H
+#define MOCK_STATE_H
 
-#include "state_pattern.hpp"
+#include "state_pattern.h"
 #include <gmock/gmock.h>
 
 class MockState : public State
@@ -14,4 +14,4 @@ public:
     MOCK_METHOD(void, speedDown, (), (override));
 };
 
-#endif
+#endif // MOCK_STATE_H

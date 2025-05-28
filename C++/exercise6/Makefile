@@ -1,8 +1,8 @@
 CXX = g++
-CXXFLAGS = -Wall -Werror -Wextra -std=c++17 -pedantic -g
+CXXFLAGS = -Wall -Weror -Wextra -std=c++17 -pedantic -g
 
 SRC = friends_group.cpp
-HDR = friends_group.hpp
+HDR = friends_group.h
 
 TEST_SRC = test_friends_group.cpp
 TEST_BIN = friends_group_test

@@ -1,5 +1,5 @@
-#include "mock_dialogues.hpp"
-#include "obj_dialogue.hpp"
+#include "mock_dialogues.h"
+#include "obj_dialogue.h"
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 

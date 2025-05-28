@@ -2,10 +2,10 @@ CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++17 -pedantic -g
 
 SRC = obj_dialogue.cpp
-HDR = obj_dialogue.hpp
+HDR = obj_dialogue.h
 
 TEST_SRC = test_obj_dialogue.cpp
-MOCK_HDR = mock_obj_dialogue.hpp
+MOCK_HDR = mock_obj_dialogue.h
 TEST_BIN = obj_dialogue_test
 
 RUN_BIN = run_dialogue

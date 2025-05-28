@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++14 -pedantic -g
 
 
-HDR = at_operator.hpp
+HDR = at_operator.h
 TEST_SRC = test_at_operator.cpp
 TEST_BIN = test_at_operator
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all

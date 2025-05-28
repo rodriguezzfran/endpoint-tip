@@ -1,5 +1,5 @@
-#ifndef PEPE_AND_JUAN_HPP
-#define PEPE_AND_JUAN_HPP
+#ifndef PEPE_AND_JUAN_H
+#define PEPE_AND_JUAN_H
 
 struct Pepe
 {
@@ -17,4 +17,4 @@ struct Juan
     Juan(Pepe& p, int val) : pp(p), a(val) {}
 };
 
-#endif
+#endif // PEPE_AND_JUAN_H

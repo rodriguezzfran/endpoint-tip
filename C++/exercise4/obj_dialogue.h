@@ -1,5 +1,5 @@
-#ifndef OBJ_DIALOGUE_HPP
-#define OBJ_DIALOGUE_HPP
+#ifndef OBJ_DIALOGUE_H
+#define OBJ_DIALOGUE_H
 
 #include <iostream>
 #include <string>
@@ -64,4 +64,4 @@ public:
     ~personOne() override = default;
 };
 
-#endif
+#endif // OBJ_DIALOGUE_H

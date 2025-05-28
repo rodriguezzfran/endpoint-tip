@@ -1,5 +1,5 @@
-#ifndef STATE_PATTERN_HPP
-#define STATE_PATTERN_HPP
+#ifndef STATE_PATTERN_H
+#define STATE_PATTERN_H
 
 #include <iostream>
 #include <memory>
@@ -169,4 +169,4 @@ public:
     void speedDown() override {}
 };
 
-#endif
+#endif // STATE_PATTERN_H

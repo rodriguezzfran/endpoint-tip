@@ -1,4 +1,4 @@
-#include "obj_dialogue.hpp"
+#include "obj_dialogue.h"
 
 int main()
 {

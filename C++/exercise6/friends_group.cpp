@@ -1,4 +1,4 @@
-#include "friends_group.hpp"
+#include "friends_group.h"
 
 int main()
 {
