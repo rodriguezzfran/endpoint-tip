@@ -1,0 +1,59 @@
+AlignAfterOpenBracket: Align
+AlignEscapedNewlines: Left
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowAllArgumentsOnNextLine: false
+AlwaysBreakTemplateDeclarations: true
+BinPackArguments: true
+BinPackParameters: true
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass:      true
+  AfterControlStatement: true
+  AfterEnum:       true
+  AfterFunction:   true
+  AfterNamespace:  true
+  AfterStruct:     true
+  AfterUnion:      false
+  AfterExternBlock: false
+  AfterCaseLabel:  false
+  BeforeCatch:     true
+  BeforeElse:      true
+  BeforeLambdaBody: true
+  IndentBraces:    false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+BreakBeforeBinaryOperators: true
+BreakBeforeInheritanceComma: false
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializersBeforeComma: false
+BreakConstructorInitializers: BeforeColon
+BreakStringLiterals: true
+ColumnLimit: 	100
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ContinuationIndentWidth: 4
+IndentCaseLabels: true
+IndentPPDirectives: BeforeHash
+IndentWidth:     4
+ReflowComments:  true
+SortIncludes:    true
+
+# Custom
+# Types
+PointerAlignment: Left
+
+# Namespaces
+FixNamespaceComments: false
+
+# Functions
+AllowShortFunctionsOnASingleLine: Empty
+
+# Blocks
+AllowShortBlocksOnASingleLine: Empty
+
+# Assignments
+# Try to never break on assignments
+PenaltyBreakAssignment: 100
+
+IndentAccessModifiers: false
+AccessModifierOffset: -4

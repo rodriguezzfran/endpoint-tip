@@ -1,14 +1,16 @@
 #include "friends_group.hpp"
 #include <gtest/gtest.h>
-#include <sstream>
 #include <iostream>
+#include <sstream>
 
-class FriendsGroupTest : public ::testing::Test {
+class FriendsGroupTest : public ::testing::Test
+{
 protected:
     FriendsGroup group;
 };
 
-TEST_F(FriendsGroupTest, ShowPrintsNothingForSingleBirthdayPerDate) {
+TEST_F(FriendsGroupTest, ShowPrintsNothingForSingleBirthdayPerDate)
+{
     testing::internal::CaptureStdout();
     group.addBirthday("2024-06-01", "Alice");
     group.addBirthday("2024-06-02", "Bob");
@@ -17,7 +19,8 @@ TEST_F(FriendsGroupTest, ShowPrintsNothingForSingleBirthdayPerDate) {
     EXPECT_TRUE(output.empty());
 }
 
-TEST_F(FriendsGroupTest, ShowPrintsDateWithMultipleBirthdays) {
+TEST_F(FriendsGroupTest, ShowPrintsDateWithMultipleBirthdays)
+{
     testing::internal::CaptureStdout();
     group.addBirthday("2024-06-01", "Alice");
     group.addBirthday("2024-06-01", "Bob");
@@ -28,7 +31,8 @@ TEST_F(FriendsGroupTest, ShowPrintsDateWithMultipleBirthdays) {
     EXPECT_NE(output.find("Bob"), std::string::npos);
 }
 
-TEST_F(FriendsGroupTest, ShowPrintsOnlyDatesWithMultipleBirthdays) {
+TEST_F(FriendsGroupTest, ShowPrintsOnlyDatesWithMultipleBirthdays)
+{
     testing::internal::CaptureStdout();
     group.addBirthday("2024-06-01", "Alice");
     group.addBirthday("2024-06-01", "Bob");
@@ -39,7 +43,8 @@ TEST_F(FriendsGroupTest, ShowPrintsOnlyDatesWithMultipleBirthdays) {
     EXPECT_EQ(output.find("Bob"), std::string::npos);
 }
 
-TEST_F(FriendsGroupTest, ShowHandlesMultipleDatesWithMultipleBirthdays) {
+TEST_F(FriendsGroupTest, ShowHandlesMultipleDatesWithMultipleBirthdays)
+{
     testing::internal::CaptureStdout();
     group.addBirthday("2024-06-01", "Alice");
     group.addBirthday("2024-06-01", "Bob");

@@ -5,7 +5,8 @@
 #include "state_pattern.hpp"
 #include <gmock/gmock.h>
 
-class MockState : public State {
+class MockState : public State
+{
 public:
     MOCK_METHOD(void, turnOn, (), (override));
     MOCK_METHOD(void, turnOff, (), (override));

@@ -15,9 +15,6 @@ struct Juan
 
     // Costructor
     Juan(Pepe& p, int val) : pp(p), a(val) {}
-
 };
 
-
-
-#endif 
+#endif

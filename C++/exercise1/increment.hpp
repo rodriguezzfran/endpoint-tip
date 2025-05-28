@@ -1,5 +1,5 @@
-#ifndef INCREMENT_H
-#define INCREMENT_H
+#ifndef INCREMENT_HPP
+#define INCREMENT_HPP
 
 /**
  * @brief Increments the given integer by 1.
