@@ -6,10 +6,13 @@ int main() {
     personTwo p2;
 
     // Call methods 
-    p2.sayHello();
-    p1.ResponseHello();
-    p1.sayHowAreYou();
-    p2.sayFineAndYou();
+    DialogueOne& d1 = p1;
+    DialogueTwo& d2 = p2;
+    
+    d2.sayHello();
+    d1.ResponseHello();
+    d1.sayHowAreYou();
+    d2.sayFineAndYou();
 
     return 0;
 }

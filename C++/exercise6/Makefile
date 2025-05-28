@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17 -pedantic -g
+CXXFLAGS = -Wall -Werror -Wextra -std=c++17 -pedantic -g
 
 SRC = friends_group.cpp
 HDR = friends_group.hpp

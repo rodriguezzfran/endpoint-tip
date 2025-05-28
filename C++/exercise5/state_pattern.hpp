@@ -31,6 +31,7 @@ class State {
 
 class FSMcontext {
     private:
+    // poner _
         std::shared_ptr<State> currentState; // actual state of the FSM, dynamically allocated object that heredits from State
 
     public:

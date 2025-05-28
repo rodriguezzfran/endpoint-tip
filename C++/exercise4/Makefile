@@ -1,14 +1,14 @@
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++17 -pedantic -g
 
-SRC = state_pattern.cpp
-HDR = state_pattern.hpp
+SRC = obj_dialogue.cpp
+HDR = obj_dialogue.hpp
 
-TEST_SRC = test_state_pattern.cpp
-MOCK_HDR = mock_state_pattern.hpp
-TEST_BIN = state_pattern_test
+TEST_SRC = test_obj_dialogue.cpp
+MOCK_HDR = mock_obj_dialogue.hpp
+TEST_BIN = obj_dialogue_test
 
-RUN_BIN = run_fsm
+RUN_BIN = run_dialogue
 
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 

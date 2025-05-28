@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++14 -pedantic -g
+CXXFLAGS = -Wall -Werror -Wextra -std=c++14 -pedantic -g
 
 
 HDR = at_operator.hpp

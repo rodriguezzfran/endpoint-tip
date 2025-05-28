@@ -30,8 +30,8 @@ class DialogueOne {
 
 class personTwo : public DialogueTwo {
 
-    public:
-
+    private:
+        // ver como implementar el puntero o referencia al otro objeto
         void sayHello() override {
             std::cout << "Hello friend" << std::endl;
         }
@@ -40,12 +40,13 @@ class personTwo : public DialogueTwo {
             std::cout << "I am fine and you?" << std::endl;
         }
 
-        ~personTwo() override = default;
+    public:
+        ~personTwo() override = default; //cuando usar los destructures virtuales y por que?
 };
 
 class personOne : public DialogueOne {
 
-    public:
+    private:
 
         void ResponseHello() override {
             std::cout << "Hello!!" << std::endl;
@@ -54,7 +55,9 @@ class personOne : public DialogueOne {
         void sayHowAreYou() override {
             std::cout << "How are you?" << std::endl;
         }
-
+        
+        // ver como hacer para que sea privado y que se pueda detruir desde la referencia a la interfaz
+    public:
         ~personOne() override = default;
 };
 
