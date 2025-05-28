@@ -6,14 +6,33 @@
 #include <string>
 #include <vector>
 
+struct Date
+{
+    int day;
+    int month;
+    int year;
+
+    // this is a comparison operator to sort the dates
+    // it is used to compare two dates and return true if the left date is less than the right date
+    friend bool operator<(const Date& lhs, const Date& rhs)
+    {
+        if (lhs.year != rhs.year)
+            return lhs.year < rhs.year;
+        if (lhs.month != rhs.month)
+            return lhs.month < rhs.month;
+        return lhs.day < rhs.day;
+    }
+};
+
+
 class FriendsGroup
 {
 private:
-    std::map<std::string, std::vector<std::string>> birthdays;
+    std::map<Date, std::vector<std::string>> birthdays;
 
 public:
     // add a birthday to the group using the date as key and the name as value
-    void addBirthday(const std::string& date, const std::string& name)
+    void addBirthday(const Date& date, const std::string& name)
     {
         birthdays[date].push_back(name);
     }
@@ -25,21 +44,13 @@ public:
         {
             if (pair.second.size() > 1)
             {
-                std::cout << "Date: " << pair.first << "\nNames: ";
-                bool first = true;
+                std::cout << "Date: " << pair.first.day << "/" << pair.first.month << "/" << pair.first.year
+                          << "\nNames:\n";
                 for (const auto& name : pair.second)
                 {
-                    if (first)
-                    {
-                        std::cout << name;
-                        first = false;
-                    }
-                    else
-                    {
-                        std::cout << "       " << name << "\n";
-                    }
-                    std::cout << "\n";
+                    std::cout << "  - " << name << "\n";
                 }
+                std::cout << std::endl;
             }
         }
     }
@@ -47,21 +58,17 @@ public:
     // Imprime las fechas que tienen MÁS de 2 personas, usando una lambda
     void show2() const
     {
-        auto print_group = [](const std::string& date, const std::vector<std::string>& names)
-        {
-            std::cout << "Date: " << date << "\nNames:\n";
-            for (const auto& name : names)
-            {
-                std::cout << "  - " << name << "\n";
-            }
-            std::cout << std::endl;
-        };
-
         for (const auto& pair : birthdays)
         {
             if (pair.second.size() > 1)
             {
-                print_group(pair.first, pair.second);
+                std::cout << "Date: " << pair.first.day << "/" << pair.first.month << "/" << pair.first.year
+                          << "\nNames:\n";
+                for (const auto& name : pair.second)
+                {
+                    std::cout << "  - " << name << "\n";
+                }
+                std::cout << std::endl;
             }
         }
     }
