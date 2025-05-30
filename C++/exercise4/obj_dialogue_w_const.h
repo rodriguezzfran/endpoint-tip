@@ -39,10 +39,6 @@ private:
         dialogueTwo.sayFineAndYou(); // Call the method from personTwo
     }
 
-    ~personOne() override {
-        std::cout << "PersonOne: Destructor called" << std::endl;
-    }
-
     // ver como hacer para que sea privado y que se pueda detruir desde la referencia a la interfaz
 public:
 
@@ -52,7 +48,7 @@ public:
         
     }
 
-    
+    ~personOne() override = default;
 };
 
 
@@ -73,9 +69,9 @@ private:
         std::cout << "PersonTwo: I am fine and you?" << std::endl;
     }
 
-     ~personTwo() override {
-        std::cout << "PersonTwo: Destructor called" << std::endl;
-     }
+    
+public:
+    ~personTwo() override = default; // cuando usar los destructures virtuales y por que?
 };
 
 #endif // OBJ_DIALOGUE_H

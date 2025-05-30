@@ -3,17 +3,15 @@
 int main()
 {
     // Create instances of personOne and personTwo
-    personOne p1;
-    personTwo p2;
+    personOne* auxp1 = new personOne();
+    DialogueOne* p1 = auxp1;
+    DialogueTwo* p2 = new personTwo();
 
     // Call methods
-    DialogueOne& d1 = p1;
-    DialogueTwo& d2 = p2;
+    auxp1->startDialogue(*p2); // Start the dialogue
 
-    d2.sayHello();
-    d1.ResponseHello();
-    d1.sayHowAreYou();
-    d2.sayFineAndYou();
+    delete p1;
+    delete p2; // Clean up memory
 
     return 0;
 }

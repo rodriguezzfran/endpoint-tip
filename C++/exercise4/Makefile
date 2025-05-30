@@ -26,8 +26,8 @@ run: $(SRC) $(HDR)
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(RUN_BIN)
 	./$(RUN_BIN)
 
-memcheck: $(TEST_BIN)
-	$(VALGRIND) ./$(TEST_BIN)
+memcheck: $(RUN_BIN)
+	$(VALGRIND) ./$(RUN_BIN)
 
 clean:
 	rm -f $(TEST_BIN) $(RUN_BIN)
