@@ -25,14 +25,13 @@ class DialogueOne
 public:
     // interface methods
     virtual void sayHowAreYou(DialogueTwo& dialogueTwo) = 0;
-    
+
     virtual ~DialogueOne() = default;
 };
 
 class personOne : public DialogueOne
 {
 private:
-
     void sayHowAreYou(DialogueTwo& dialogueTwo) override
     {
         std::cout << "PersonOne: How are you?" << std::endl;
@@ -41,16 +40,13 @@ private:
 
     // ver como hacer para que sea privado y que se pueda detruir desde la referencia a la interfaz
 public:
-
     void startDialogue(DialogueTwo& dialogueTwo)
     {
         dialogueTwo.sayHello(*this); // Start the dialogue
-        
     }
 
     ~personOne() override = default;
 };
-
 
 class personTwo : public DialogueTwo
 {
@@ -61,7 +57,6 @@ private:
     {
         std::cout << "PersonTwo: Hello friend" << std::endl;
         personOne.sayHowAreYou(*this); // Call the method from personOne
-        
     }
 
     void sayFineAndYou() override
@@ -69,7 +64,6 @@ private:
         std::cout << "PersonTwo: I am fine and you?" << std::endl;
     }
 
-    
 public:
     ~personTwo() override = default; // cuando usar los destructures virtuales y por que?
 };

@@ -5,17 +5,18 @@ using ::testing::Exactly;
 
 TEST(FSMContextTest, CallsTurnOnOnCurrentState)
 {
-    auto mock = std::make_shared<MockState>();
-    FSMcontext fsm(mock);
+    std::unique_ptr<MockState> mock = std::make_unique<MockState>();
+    MockState* mock_ptr = mock.get();
+    FSMcontext fsm(std::move(mock));
 
-    EXPECT_CALL(*mock, turnOn()).Times(1);
+    EXPECT_CALL(*mock_ptr, turnOn()).Times(1);
     fsm.turnOn();
 }
 
 TEST(FSMContextTest, PositivePath)
 {
-    std::shared_ptr<State> off = std::make_shared<OffState>();
-    FSMcontext fsm(off);
+    std::unique_ptr<State> off = std::make_unique<OffState>();
+    FSMcontext fsm(std::move(off));
 
     testing::internal::CaptureStdout();
     fsm.turnOn();
@@ -26,8 +27,8 @@ TEST(FSMContextTest, PositivePath)
 
 TEST(FSMContextTest, StoppedToWalkingToRunningTransition)
 {
-    std::shared_ptr<State> off = std::make_shared<OffState>();
-    FSMcontext fsm(off);
+    std::unique_ptr<State> off = std::make_unique<OffState>();
+    FSMcontext fsm(std::move(off));
 
     testing::internal::CaptureStdout();
     fsm.turnOn();  // Off → Stopped

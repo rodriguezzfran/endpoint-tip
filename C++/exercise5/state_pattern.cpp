@@ -2,9 +2,9 @@
 
 int main()
 {
-    std::shared_ptr<State> offState
-        = std::make_shared<OffState>(); // this is a pointer to a OffState object
-    FSMcontext fsm(offState);
+    std::unique_ptr<State> offState
+        = std::make_unique<OffState>(); // this is a pointer to a OffState object
+    FSMcontext fsm(std::move(offState));
 
     fsm.turnOn();    // Off -- TurnOn --> Stopped
     fsm.speedUp();   // Stopped -- SpeedUp --> Walking

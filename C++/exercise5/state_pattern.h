@@ -32,22 +32,29 @@ public:
     virtual void speedDown() = 0;
 };
 
+template <typename T>
+std::unique_ptr<State> makeState()
+{
+    static_assert(std::is_base_of<State, T>::value, "T must inherit from State");
+    return std::make_unique<T>();
+}
+
 class FSMcontext
 {
 private:
     // poner _
-    std::shared_ptr<State> currentState; // actual state of the FSM, dynamically allocated object
+    std::unique_ptr<State> currentState; // actual state of the FSM, dynamically allocated object
                                          // that heredits from State
 
 public:
-    FSMcontext(std::shared_ptr<State> initialState)
+    FSMcontext(std::unique_ptr<State> initialState)
     {
-        changeState(initialState);
+        changeState(std::move(initialState));
     }
 
-    void changeState(std::shared_ptr<State> newState)
+    void changeState(std::unique_ptr<State> newState)
     {
-        currentState = newState;
+        currentState = std::move(newState);
         currentState->setContext(this);
     }
 
@@ -78,7 +85,7 @@ public:
     void turnOn() override
     {
         std::cout << "Off -- TurnOn --> Stopped\n";
-        context->changeState(std::static_pointer_cast<State>(std::make_shared<StoppedState>()));
+        context->changeState(makeState<StoppedState>());
     }
 
     void turnOff() override {}
@@ -94,18 +101,18 @@ public:
     void turnOff() override
     {
         std::cout << "Stopped -- TurnOff --> Off\n";
-        context->changeState(std::static_pointer_cast<State>(std::make_shared<OffState>()));
+        context->changeState(makeState<OffState>());
     }
 
     void speedUp() override
     {
         std::cout << "Stopped -- SpeedUp --> Walking\n";
-        context->changeState(std::static_pointer_cast<State>(std::make_shared<WalkingState>()));
+        context->changeState(makeState<WalkingState>());
     }
     void speedDown() override
     {
         std::cout << "Stopped -- SpeedDown --> Error\n";
-        context->changeState(std::static_pointer_cast<State>(std::make_shared<ErrorState>()));
+        context->changeState(makeState<ErrorState>());
     }
 };
 
@@ -116,19 +123,19 @@ public:
     void turnOff() override
     {
         std::cout << "Walking -- TurnOff --> Off\n";
-        context->changeState(std::make_shared<OffState>());
+        context->changeState(makeState<OffState>());
     }
 
     void speedUp() override
     {
         std::cout << "Walking -- SpeedUp --> Running\n";
-        context->changeState(std::static_pointer_cast<State>(std::make_shared<RunningState>()));
+        context->changeState(makeState<RunningState>());
     }
 
     void speedDown() override
     {
         std::cout << "Walking -- SpeedDown --> Stopped\n";
-        context->changeState(std::static_pointer_cast<State>(std::make_shared<StoppedState>()));
+        context->changeState(makeState<StoppedState>());
     }
 };
 
@@ -139,19 +146,19 @@ public:
     void turnOff() override
     {
         std::cout << "Running -- TurnOff --> Off\n";
-        context->changeState(std::make_shared<OffState>());
+        context->changeState(makeState<OffState>());
     }
 
     void speedUp() override
     {
         std::cout << "Running -- SpeedUp --> Error\n";
-        context->changeState(std::static_pointer_cast<State>(std::make_shared<ErrorState>()));
+        context->changeState(makeState<ErrorState>());
     }
 
     void speedDown() override
     {
         std::cout << "Running -- SpeedDown --> Walking\n";
-        context->changeState(std::make_shared<StoppedState>());
+        context->changeState(makeState<StoppedState>());
     }
 };
 
@@ -162,7 +169,7 @@ public:
     void turnOff() override
     {
         std::cout << "Error -- TurnOff --> Off\n";
-        context->changeState(std::make_shared<OffState>());
+        context->changeState(makeState<OffState>());
     }
 
     void speedUp() override {}

@@ -24,7 +24,6 @@ struct Date
     }
 };
 
-
 class FriendsGroup
 {
 private:
@@ -44,8 +43,8 @@ public:
         {
             if (pair.second.size() > 1)
             {
-                std::cout << "Date: " << pair.first.day << "/" << pair.first.month << "/" << pair.first.year
-                          << "\nNames:\n";
+                std::cout << "Date: " << pair.first.day << "/" << pair.first.month << "/"
+                          << pair.first.year << "\nNames:\n";
                 for (const auto& name : pair.second)
                 {
                     std::cout << "  - " << name << "\n";
@@ -62,8 +61,8 @@ public:
         {
             if (pair.second.size() > 1)
             {
-                std::cout << "Date: " << pair.first.day << "/" << pair.first.month << "/" << pair.first.year
-                          << "\nNames:\n";
+                std::cout << "Date: " << pair.first.day << "/" << pair.first.month << "/"
+                          << pair.first.year << "\nNames:\n";
                 for (const auto& name : pair.second)
                 {
                     std::cout << "  - " << name << "\n";
