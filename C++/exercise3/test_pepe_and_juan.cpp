@@ -6,7 +6,7 @@ TEST(PepeAndJuanTest, PepeAndJuanMacro)
 {
 
     // Create an instance of Pepe
-    Pepe pepe = {10, 20, 30};
+    Pepe pepe = {10, 20, 30, 40, 50, 60};
 
     // Create an instance of Juan
     Juan juan(pepe, 40);
@@ -15,9 +15,15 @@ TEST(PepeAndJuanTest, PepeAndJuanMacro)
     EXPECT_EQ(pepe.x, 10);
     EXPECT_EQ(pepe.y, 20);
     EXPECT_EQ(pepe.z, 30);
+    EXPECT_EQ(pepe.a, 40);
+    EXPECT_EQ(pepe.b, 50);
+    EXPECT_EQ(pepe.c, 60);
     EXPECT_EQ(juan.pp.x, pepe.x);
     EXPECT_EQ(juan.pp.y, pepe.y);
     EXPECT_EQ(juan.pp.z, pepe.z);
+    EXPECT_EQ(juan.pp.a, pepe.a);
+    EXPECT_EQ(juan.pp.b, pepe.b);
+    EXPECT_EQ(juan.pp.c, pepe.c);
     EXPECT_EQ(juan.a, 40);
 }
 
@@ -31,7 +37,7 @@ TEST(PepeAndJuanTest, SizeOfStructures)
     std::cout << "Size of Juan: " << sizeof(Juan) << std::endl;
     std::cout << "it seems to be true but the size of Juan is 12 without the padding" << std::endl;
     std::cout << "so the Juan size is 8 bytes of the reference + 4 bytes of the int + 4 bytes of "
-                 "the padding"
+                 "the padding in this architecture"
               << std::endl;
 
     // Check the size of Juan

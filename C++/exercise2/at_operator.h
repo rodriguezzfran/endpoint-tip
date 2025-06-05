@@ -13,7 +13,7 @@
  * reference.
  */
 #define declare_at(type, name, address)                      \
-    volatile type& name = *reinterpret_cast<volatile type*>( \
+    type& name = *reinterpret_cast<type*>(          \
         reinterpret_cast<std::uintptr_t>(address))
 
 #endif // AT_OPERATOR_H
