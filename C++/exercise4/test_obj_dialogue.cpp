@@ -2,37 +2,28 @@
 #include "obj_dialogue.h"
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+#include <memory>
+#include <iostream>
 
 using ::testing::Exactly;
+using ::testing::StrictMock;
+using ::testing::Ref;
 
-// Test personOne class mocking personTwo class
-TEST(DialogueTest, MockDialogueOne)
-{
 
-    personTwo p2;
-    MockDialogueOne mockDialogueOne;
+TEST(PersonTwoTest, TestPersonTwoHello) {
+    // Capturar std::cout
+    testing::internal::CaptureStdout();
 
-    EXPECT_CALL(mockDialogueOne, ResponseHello()).Times(Exactly(1));
-    EXPECT_CALL(mockDialogueOne, sayHowAreYou()).Times(Exactly(1));
+    StrictMock<MockDialogueOne> mockPersonOne;
+    std::unique_ptr<DialogueTwo> p2 = std::make_unique<personTwo>();
 
-    p2.sayHello();
-    mockDialogueOne.ResponseHello();
-    mockDialogueOne.sayHowAreYou();
-    p2.sayFineAndYou();
-}
+    EXPECT_CALL(mockPersonOne, howAreYou(Ref(*p2))).Times(1);
 
-// Test personTwo class mocking personOne class
-TEST(DialogueTest, MockDialogueTwo)
-{
+    p2->hello(mockPersonOne);
+    
+    // Obtener la salida
+    std::string output = testing::internal::GetCapturedStdout();
 
-    personOne p1;
-    MockDialogueTwo mockDialogueTwo;
-
-    EXPECT_CALL(mockDialogueTwo, sayHello()).Times(Exactly(1));
-    EXPECT_CALL(mockDialogueTwo, sayFineAndYou()).Times(Exactly(1));
-
-    mockDialogueTwo.sayHello();
-    p1.ResponseHello();
-    p1.sayHowAreYou();
-    mockDialogueTwo.sayFineAndYou();
+    // Verificar que se imprimió el mensaje esperado
+    EXPECT_NE(output.find("PersonTwo: Hello friend"), std::string::npos);
 }

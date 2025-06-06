@@ -35,19 +35,12 @@ TEST(PepeAndJuanTest, SizeOfStructures)
     EXPECT_EQ(sizeof(Pepe), 12); // Assuming 4 bytes for each int
     std::cout << "Size of Pepe: " << sizeof(Pepe) << std::endl;
     std::cout << "Size of Juan: " << sizeof(Juan) << std::endl;
-    std::cout << "it seems to be true but the size of Juan is 12 without the padding" << std::endl;
-    std::cout << "so the Juan size is 8 bytes of the reference + 4 bytes of the int + 4 bytes of "
-                 "the padding in this architecture"
+    std::cout << "it could be true deppending on the size of the structure pepe" << std::endl;
+    std::cout << "the Juan size is 8 bytes of the reference + 4 bytes of the int + 4 bytes of "
+                 "the padding in this architecture, so it always will be 16 bytes and different from pepe"
               << std::endl;
 
     // Check the size of Juan
-    EXPECT_EQ(sizeof(Juan), 16); // Assuming 4 bytes for int and reference
-}
-
-// Test case for the not equal size of the structures
-TEST(PepeAndJuanTest, NotEqualSizeOfStructures)
-{
-
-    // Check if the size of Pepe and Juan are not equal
-    EXPECT_NE(sizeof(Pepe), sizeof(Juan));
+    EXPECT_EQ(sizeof(Juan), 16); // Assuming 4 bytes for int and 8 for reference
+    EXPECT_NE(sizeof(Juan), sizeof(Pepe)); // Juan should not be the same size as Pepe
 }

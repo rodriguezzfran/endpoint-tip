@@ -5,7 +5,7 @@ SRC = obj_dialogue.cpp
 HDR = obj_dialogue.h
 
 TEST_SRC = test_obj_dialogue.cpp
-MOCK_HDR = mock_obj_dialogue.h
+MOCK_HDR = mock_dialogues.h
 TEST_BIN = obj_dialogue_test
 
 RUN_BIN = run_dialogue

@@ -1,17 +1,14 @@
 #include "obj_dialogue.h"
+#include <memory>
 
 int main()
 {
-    // Create instances of personOne and personTwo
-    personOne* auxp1 = new personOne();
-    DialogueOne* p1 = auxp1;
-    DialogueTwo* p2 = new personTwo();
+    // Create instances of personOne and personTwo using smart pointers
+    std::unique_ptr<personOne> person1 = std::make_unique<personOne>();
+    std::unique_ptr<DialogueTwo> person2 = std::make_unique<personTwo>();
 
-    // Call methods
-    auxp1->startDialogue(*p2); // Start the dialogue
-
-    delete p1;
-    delete p2; // Clean up memory
+    // Start the dialogue
+    person1.get()->startDialogue(*person2);
 
     return 0;
 }
