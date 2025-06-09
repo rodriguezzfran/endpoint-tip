@@ -70,7 +70,7 @@ public:
 
         ~personTwo() override
     {
-        std::cout << "PersonTwo: Destructor called" << std::endl;
+        
     }
 
 };

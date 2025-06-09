@@ -11,7 +11,7 @@ using ::testing::Ref;
 
 
 TEST(PersonTwoTest, TestPersonTwoHello) {
-    // Capturar std::cout
+    // Capture the output 
     testing::internal::CaptureStdout();
 
     StrictMock<MockDialogueOne> mockPersonOne;
@@ -21,9 +21,20 @@ TEST(PersonTwoTest, TestPersonTwoHello) {
 
     p2->hello(mockPersonOne);
     
-    // Obtener la salida
+    // Get the captured output
     std::string output = testing::internal::GetCapturedStdout();
 
-    // Verificar que se imprimió el mensaje esperado
+    // Check if the output contains the expected string
     EXPECT_NE(output.find("PersonTwo: Hello friend"), std::string::npos);
+}
+
+TEST(PersonOneTest, TestHowAreYouCallsFineAndYou) {
+    StrictMock<MockDialogueTwo> mockDialogueTwo;
+
+    // Esperamos que se llame fineAndYou
+    EXPECT_CALL(mockDialogueTwo, fineAndYou()).Times(1);
+
+    std::unique_ptr<DialogueOne> p1 = std::make_unique<personOne>();
+    p1->howAreYou(mockDialogueTwo);
+  
 }

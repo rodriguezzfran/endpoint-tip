@@ -11,6 +11,10 @@ public:
     MOCK_METHOD(void, howAreYou, (DialogueTwo&), (override));
 };
 
-
+class MockDialogueTwo : public DialogueTwo {
+public:
+    MOCK_METHOD(void, hello, (DialogueOne&), (override));
+    MOCK_METHOD(void, fineAndYou, (), (override));
+};
 
 #endif // MOCK_DIALOGUES_H
