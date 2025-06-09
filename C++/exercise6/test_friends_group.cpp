@@ -12,8 +12,8 @@ protected:
 TEST_F(FriendsGroupTest, ShowPrintsNothingForSingleBirthdayPerDate)
 {
     testing::internal::CaptureStdout();
-    group.addBirthday("2024-06-01", "Alice");
-    group.addBirthday("2024-06-02", "Bob");
+    group.addBirthday({01,06,2024}, "Alice");
+    group.addBirthday({02,05,2024}, "Bob");
     group.show();
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_TRUE(output.empty());
@@ -22,11 +22,11 @@ TEST_F(FriendsGroupTest, ShowPrintsNothingForSingleBirthdayPerDate)
 TEST_F(FriendsGroupTest, ShowPrintsDateWithMultipleBirthdays)
 {
     testing::internal::CaptureStdout();
-    group.addBirthday("2024-06-01", "Alice");
-    group.addBirthday("2024-06-01", "Bob");
+    group.addBirthday({01,06,2024}, "Alice");
+    group.addBirthday({01,06,2024}, "Bob");
     group.show();
     std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_NE(output.find("Date: 2024-06-01"), std::string::npos);
+    EXPECT_NE(output.find("Date: 1/6/2024"), std::string::npos);
     EXPECT_NE(output.find("Alice"), std::string::npos);
     EXPECT_NE(output.find("Bob"), std::string::npos);
 }
@@ -34,9 +34,9 @@ TEST_F(FriendsGroupTest, ShowPrintsDateWithMultipleBirthdays)
 TEST_F(FriendsGroupTest, ShowPrintsOnlyDatesWithMultipleBirthdays)
 {
     testing::internal::CaptureStdout();
-    group.addBirthday("2024-06-01", "Alice");
-    group.addBirthday("2024-06-01", "Bob");
-    group.addBirthday("2024-06-02", "Charlie");
+    group.addBirthday({01,06,2024}, "Alice");
+    group.addBirthday({01,06,2024}, "Bob");
+    group.addBirthday({02,06,2024}, "Charlie");
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_EQ(output.find("Date: 2024-06-01"), std::string::npos);
     EXPECT_EQ(output.find("Alice"), std::string::npos);
@@ -46,10 +46,10 @@ TEST_F(FriendsGroupTest, ShowPrintsOnlyDatesWithMultipleBirthdays)
 TEST_F(FriendsGroupTest, ShowHandlesMultipleDatesWithMultipleBirthdays)
 {
     testing::internal::CaptureStdout();
-    group.addBirthday("2024-06-01", "Alice");
-    group.addBirthday("2024-06-01", "Bob");
-    group.addBirthday("2024-06-02", "Charlie");
-    group.addBirthday("2024-06-02", "David");
+    group.addBirthday({01,06,2024}, "Alice");
+    group.addBirthday({01,06,2024}, "Bob");
+    group.addBirthday({02,06,2024}, "Charlie");
+    group.addBirthday({02,06,2024}, "David");
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_EQ(output.find("Date: 2024-06-01"), std::string::npos);
     EXPECT_EQ(output.find("Alice"), std::string::npos);

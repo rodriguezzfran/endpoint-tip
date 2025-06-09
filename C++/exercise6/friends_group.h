@@ -16,11 +16,32 @@ struct Date
     // it is used to compare two dates and return true if the left date is less than the right date
     friend bool operator<(const Date& lhs, const Date& rhs)
     {
-        if (lhs.year != rhs.year)
-            return lhs.year < rhs.year;
-        if (lhs.month != rhs.month)
-            return lhs.month < rhs.month;
-        return lhs.day < rhs.day;
+
+        bool leftLessThanRight = false;
+
+        // Compare years first
+        if (lhs.year < rhs.year)
+        {
+            leftLessThanRight = true;
+        }
+        else if (lhs.year == rhs.year)
+        {
+            // If years are equal, compare months
+            if (lhs.month < rhs.month)
+            {
+                leftLessThanRight = true;
+            }
+            // If months are also equal, compare days
+            else if (lhs.month == rhs.month)
+            {
+                if (lhs.day < rhs.day)
+                {
+                    leftLessThanRight = true;
+                }
+            }
+        }
+
+        return leftLessThanRight;
     }
 };
 
