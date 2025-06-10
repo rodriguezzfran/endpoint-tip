@@ -5,12 +5,12 @@
 #include <memory>
 #include <string>
 
-class FSMcontext;
 class OffState;
 class StoppedState;
 class WalkingState;
 class RunningState;
 class ErrorState;
+class FSMcontext;
 
 // Abstract State class
 class State
@@ -18,13 +18,12 @@ class State
 protected:
     FSMcontext* context;
 
+    // now the constructor initializes the context pointer
+    explicit State(FSMcontext* ctx) : context(ctx) {}
+
 public:
     virtual ~State() = default;
-    void setContext(FSMcontext* context)
-    {
-        this->context = context; // raw pointer to the context
-    }
-
+    
     // Every state must implement these methods
     virtual void turnOn() = 0;
     virtual void turnOff() = 0;
@@ -32,62 +31,15 @@ public:
     virtual void speedDown() = 0;
 };
 
-template <typename T>
-std::unique_ptr<State> makeState()
-{
-    static_assert(std::is_base_of<State, T>::value, "T must inherit from State");
-    return std::make_unique<T>();
-}
-
-class FSMcontext
-{
-private:
-    // poner _
-    std::unique_ptr<State> currentState; // actual state of the FSM, dynamically allocated object
-                                         // that heredits from State
-
-public:
-    FSMcontext(std::unique_ptr<State> initialState)
-    {
-        changeState(std::move(initialState));
-    }
-
-    void changeState(std::unique_ptr<State> newState)
-    {
-        currentState = std::move(newState);
-        currentState->setContext(this);
-    }
-
-    void turnOn()
-    {
-        currentState->turnOn();
-    }
-
-    void turnOff()
-    {
-        currentState->turnOff();
-    }
-
-    void speedUp()
-    {
-        currentState->speedUp();
-    }
-
-    void speedDown()
-    {
-        currentState->speedDown();
-    }
-};
-
 class OffState : public State
 {
 public:
-    void turnOn() override
-    {
-        std::cout << "Off -- TurnOn --> Stopped\n";
-        context->changeState(makeState<StoppedState>());
-    }
 
+    // Constructor that initializes the context pointer
+    explicit OffState(FSMcontext* ctx) : State(ctx) {}
+
+    void turnOn() override;
+    
     void turnOff() override {}
     void speedUp() override {}
     void speedDown() override {}
@@ -96,84 +48,145 @@ public:
 class StoppedState : public State
 {
 public:
+    explicit StoppedState(FSMcontext* ctx) : State(ctx) {}
+
     void turnOn() override {}
 
-    void turnOff() override
-    {
-        std::cout << "Stopped -- TurnOff --> Off\n";
-        context->changeState(makeState<OffState>());
-    }
-
-    void speedUp() override
-    {
-        std::cout << "Stopped -- SpeedUp --> Walking\n";
-        context->changeState(makeState<WalkingState>());
-    }
-    void speedDown() override
-    {
-        std::cout << "Stopped -- SpeedDown --> Error\n";
-        context->changeState(makeState<ErrorState>());
-    }
+    void turnOff() override;
+    void speedUp() override;
+    void speedDown() override;
 };
 
 class WalkingState : public State
 {
 public:
+    explicit WalkingState(FSMcontext* ctx) : State(ctx) {}
+
     void turnOn() override {}
-    void turnOff() override
-    {
-        std::cout << "Walking -- TurnOff --> Off\n";
-        context->changeState(makeState<OffState>());
-    }
-
-    void speedUp() override
-    {
-        std::cout << "Walking -- SpeedUp --> Running\n";
-        context->changeState(makeState<RunningState>());
-    }
-
-    void speedDown() override
-    {
-        std::cout << "Walking -- SpeedDown --> Stopped\n";
-        context->changeState(makeState<StoppedState>());
-    }
+    
+    void turnOff() override;
+    void speedUp() override;
+    void speedDown() override;
 };
 
 class RunningState : public State
 {
 public:
+    explicit RunningState(FSMcontext* ctx) : State(ctx) {}
+
     void turnOn() override {}
-    void turnOff() override
-    {
-        std::cout << "Running -- TurnOff --> Off\n";
-        context->changeState(makeState<OffState>());
-    }
-
-    void speedUp() override
-    {
-        std::cout << "Running -- SpeedUp --> Error\n";
-        context->changeState(makeState<ErrorState>());
-    }
-
-    void speedDown() override
-    {
-        std::cout << "Running -- SpeedDown --> Walking\n";
-        context->changeState(makeState<StoppedState>());
-    }
+    
+    void turnOff() override;
+    void speedUp() override;
+    void speedDown() override;
 };
 
 class ErrorState : public State
 {
 public:
+    explicit ErrorState(FSMcontext* ctx) : State(ctx) {}
+    
     void turnOn() override {}
-    void turnOff() override
-    {
-        std::cout << "Error -- TurnOff --> Off\n";
-        context->changeState(makeState<OffState>());
-    }
+    
+    void turnOff() override;
 
     void speedUp() override {}
     void speedDown() override {}
 };
+
+class FSMcontext
+{
+private:
+    // poner _
+    std::unique_ptr<State> _currentState; // actual state of the FSM, dynamically allocated object
+                                         // that heredits from State
+
+public:
+    // que no reciba nada y que inicialice el estado a OffState
+    FSMcontext()
+    {
+        _currentState = std::unique_ptr<State>(new OffState(this));
+    }
+
+
+    void changeState(std::unique_ptr<State> newState)
+    {
+        _currentState = std::move(newState);
+    }
+
+    void turnOn()
+    {
+        _currentState->turnOn();
+    }
+
+    void turnOff()
+    {
+        _currentState->turnOff();
+    }
+
+    void speedUp()
+    {
+        _currentState->speedUp();
+    }
+
+    void speedDown()
+    {
+        _currentState->speedDown();
+    }
+};
+
+// OffState
+inline void OffState::turnOn() {
+    std::cout << "Off -- TurnOn --> Stopped\n";
+    context->changeState(std::make_unique<StoppedState>(context));
+}
+
+// StoppedState
+inline void StoppedState::turnOff() {
+    std::cout << "Stopped -- TurnOff --> Off\n";
+    context->changeState(std::make_unique<OffState>(context));
+}
+inline void StoppedState::speedUp() {
+    std::cout << "Stopped -- SpeedUp --> Walking\n";
+    context->changeState(std::make_unique<WalkingState>(context));
+}
+inline void StoppedState::speedDown() {
+    std::cout << "Stopped -- SpeedDown --> Error\n";
+    context->changeState(std::make_unique<ErrorState>(context));
+}
+
+// WalkingState
+inline void WalkingState::turnOff() {
+    std::cout << "Walking -- TurnOff --> Off\n";
+    context->changeState(std::make_unique<OffState>(context));
+}
+inline void WalkingState::speedUp() {
+    std::cout << "Walking -- SpeedUp --> Running\n";
+    context->changeState(std::make_unique<RunningState>(context));
+}
+inline void WalkingState::speedDown() {
+    std::cout << "Walking -- SpeedDown --> Stopped\n";
+    context->changeState(std::make_unique<StoppedState>(context));
+}
+
+// RunningState
+inline void RunningState::turnOff() {
+    std::cout << "Running -- TurnOff --> Off\n";
+    context->changeState(std::make_unique<OffState>(context));
+}
+inline void RunningState::speedUp() {
+    std::cout << "Running -- SpeedUp --> Error\n";
+    context->changeState(std::make_unique<ErrorState>(context));
+}
+void RunningState::speedDown() {
+    std::cout << "Running -- SpeedDown --> Walking\n";
+    context->changeState(std::make_unique<StoppedState>(context));
+}
+
+// ErrorState
+void ErrorState::turnOff() {
+    std::cout << "Error -- TurnOff --> Off\n";
+    context->changeState(std::make_unique<OffState>(context));
+}
 
 #endif // STATE_PATTERN_H

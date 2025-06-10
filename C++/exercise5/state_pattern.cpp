@@ -2,9 +2,8 @@
 
 int main()
 {
-    std::unique_ptr<State> offState
-        = std::make_unique<OffState>(); // this is a pointer to a OffState object
-    FSMcontext fsm(std::move(offState));
+
+    FSMcontext fsm;
 
     fsm.turnOn();    // Off -- TurnOn --> Stopped
     fsm.speedUp();   // Stopped -- SpeedUp --> Walking
