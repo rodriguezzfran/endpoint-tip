@@ -12,8 +12,7 @@
  * convert the address to a pointer of type 'volatile type*', and then dereference it to get a
  * reference.
  */
-#define declare_at(type, name, address)                      \
-    type& name = *reinterpret_cast<type*>(          \
-        reinterpret_cast<std::uintptr_t>(address))
+#define declare_at(type, name, address) \
+    type& name = *reinterpret_cast<type*>(reinterpret_cast<std::uintptr_t>(address))
 
 #endif // AT_OPERATOR_H

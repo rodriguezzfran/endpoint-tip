@@ -6,12 +6,14 @@
 #include "obj_dialogue.h"
 #include <gmock/gmock.h>
 
-class MockDialogueOne : public DialogueOne {
+class MockDialogueOne : public DialogueOne
+{
 public:
     MOCK_METHOD(void, howAreYou, (DialogueTwo&), (override));
 };
 
-class MockDialogueTwo : public DialogueTwo {
+class MockDialogueTwo : public DialogueTwo
+{
 public:
     MOCK_METHOD(void, hello, (DialogueOne&), (override));
     MOCK_METHOD(void, fineAndYou, (), (override));

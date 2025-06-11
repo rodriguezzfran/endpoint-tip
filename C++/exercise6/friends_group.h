@@ -1,11 +1,11 @@
 #ifndef FRIENDS_GROUP_H
 #define FRIENDS_GROUP_H
 
+#include <functional>
 #include <iostream>
 #include <map>
 #include <string>
 #include <vector>
-#include <functional>
 
 struct Date
 {
@@ -77,7 +77,8 @@ public:
     }
 
     // funcion lambda para imprimir los cumpleaños de aquellas fechas con 2 o más personas
-    std::function<void()> show2 = [this]() {
+    std::function<void()> show2 = [this]()
+    {
         for (const auto& pair : birthdays)
         {
             if (pair.second.size() > 1)
@@ -92,7 +93,6 @@ public:
             }
         }
     };
-    
 };
 
 #endif // FRIENDS_GROUP_H

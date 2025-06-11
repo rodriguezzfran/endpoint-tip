@@ -44,17 +44,13 @@ public:
         dialogueTwo.hello(*this); // Start the dialogue
     }
 
-    ~personOne() override
-    {
-
-    }
+    ~personOne() override {}
 };
 
 class personTwo : public DialogueTwo
 {
 
 private:
-    
     void hello(DialogueOne& personOne) override
     {
         std::cout << "PersonTwo: Hello friend" << std::endl;
@@ -67,12 +63,7 @@ private:
     }
 
 public:
-
-        ~personTwo() override
-    {
-        
-    }
-
+    ~personTwo() override {}
 };
 
 #endif // OBJ_DIALOGUE_H

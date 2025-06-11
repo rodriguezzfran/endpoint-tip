@@ -128,55 +128,66 @@ public:
 };
 
 // OffState
-inline void OffState::turnOn() {
+inline void OffState::turnOn()
+{
     std::cout << "Off -- TurnOn --> Stopped\n";
     context.changeState(std::make_unique<StoppedState>(context));
 }
 
 // StoppedState
-inline void StoppedState::turnOff() {
+inline void StoppedState::turnOff()
+{
     std::cout << "Stopped -- TurnOff --> Off\n";
     context.changeState(std::make_unique<OffState>(context));
 }
-inline void StoppedState::speedUp() {
+inline void StoppedState::speedUp()
+{
     std::cout << "Stopped -- SpeedUp --> Walking\n";
     context.changeState(std::make_unique<WalkingState>(context));
 }
-inline void StoppedState::speedDown() {
+inline void StoppedState::speedDown()
+{
     std::cout << "Stopped -- SpeedDown --> Error\n";
     context.changeState(std::make_unique<ErrorState>(context));
 }
 
 // WalkingState
-inline void WalkingState::turnOff() {
+inline void WalkingState::turnOff()
+{
     std::cout << "Walking -- TurnOff --> Off\n";
     context.changeState(std::make_unique<OffState>(context));
 }
-inline void WalkingState::speedUp() {
+inline void WalkingState::speedUp()
+{
     std::cout << "Walking -- SpeedUp --> Running\n";
     context.changeState(std::make_unique<RunningState>(context));
 }
-inline void WalkingState::speedDown() {
+inline void WalkingState::speedDown()
+{
     std::cout << "Walking -- SpeedDown --> Stopped\n";
     context.changeState(std::make_unique<StoppedState>(context));
 }
 
 // RunningState
-inline void RunningState::turnOff() {
+inline void RunningState::turnOff()
+{
     std::cout << "Running -- TurnOff --> Off\n";
     context.changeState(std::make_unique<OffState>(context));
 }
-inline void RunningState::speedUp() {
+inline void RunningState::speedUp()
+{
     std::cout << "Running -- SpeedUp --> Error\n";
     context.changeState(std::make_unique<ErrorState>(context));
 }
-inline void RunningState::speedDown() {
+inline void RunningState::speedDown()
+{
     std::cout << "Running -- SpeedDown --> Walking\n";
     context.changeState(std::make_unique<StoppedState>(context));
 }
 
 // ErrorState
-inline void ErrorState::turnOff() {
+inline void ErrorState::turnOff()
+{
     std::cout << "Error -- TurnOff --> Off\n";
     context.changeState(std::make_unique<OffState>(context));
 }
