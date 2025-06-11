@@ -38,3 +38,18 @@ TEST(PersonOneTest, TestHowAreYouCallsFineAndYou) {
     p1->howAreYou(mockDialogueTwo);
   
 }
+
+TEST (PersonOneTest, TestFineAndYouOutput) {
+    // Capture the output 
+    testing::internal::CaptureStdout();
+
+    std::unique_ptr<DialogueTwo> p2 = std::make_unique<personTwo>();
+
+    p2->fineAndYou();
+
+    // Get the captured output
+    std::string output = testing::internal::GetCapturedStdout();
+
+    // Check if the output contains the expected string
+    EXPECT_NE(output.find("PersonTwo: I am fine and you?"), std::string::npos);
+}
