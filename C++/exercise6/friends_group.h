@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <functional>
 
 struct Date
 {
@@ -75,9 +76,8 @@ public:
         }
     }
 
-    // Imprime las fechas que tienen MÁS de 2 personas, usando una lambda
-    void show2() const
-    {
+    // funcion lambda para imprimir los cumpleaños de aquellas fechas con 2 o más personas
+    std::function<void()> show2 = [this]() {
         for (const auto& pair : birthdays)
         {
             if (pair.second.size() > 1)
@@ -91,7 +91,8 @@ public:
                 std::cout << std::endl;
             }
         }
-    }
+    };
+    
 };
 
 #endif // FRIENDS_GROUP_H
