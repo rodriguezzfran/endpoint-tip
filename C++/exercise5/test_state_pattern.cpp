@@ -1,22 +1,10 @@
-#include "mock_state_pattern.h"
+#include "state_pattern.h"
 #include <gtest/gtest.h>
-
-using ::testing::Exactly;
-
-TEST(FSMContextTest, CallsTurnOnOnCurrentState)
-{
-    std::unique_ptr<MockState> mock = std::make_unique<MockState>();
-    MockState* mock_ptr = mock.get();
-    FSMcontext fsm(std::move(mock));
-
-    EXPECT_CALL(*mock_ptr, turnOn()).Times(1);
-    fsm.turnOn();
-}
 
 TEST(FSMContextTest, PositivePath)
 {
-    std::unique_ptr<State> off = std::make_unique<OffState>();
-    FSMcontext fsm(std::move(off));
+    FSMcontext fsm;
+    std::unique_ptr<State> off = std::make_unique<OffState>(fsm);
 
     testing::internal::CaptureStdout();
     fsm.turnOn();
@@ -27,8 +15,8 @@ TEST(FSMContextTest, PositivePath)
 
 TEST(FSMContextTest, StoppedToWalkingToRunningTransition)
 {
-    std::unique_ptr<State> off = std::make_unique<OffState>();
-    FSMcontext fsm(std::move(off));
+    FSMcontext fsm;
+    std::unique_ptr<State> off = std::make_unique<OffState>(fsm);
 
     testing::internal::CaptureStdout();
     fsm.turnOn();  // Off → Stopped
